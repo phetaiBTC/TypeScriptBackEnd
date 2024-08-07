@@ -1,9 +1,17 @@
-import { Router, Request, Response } from 'express'
+import { Router } from 'express'
 import { isAdmin } from '@/plugins/passport'
 import userController from '../controller/userController'
-import { adminSignIn } from '../../../../middlewares/auth'
-import { userValidator, logins } from '@/admin/Validator/UserValidator'
+import { adminSignInOrStaffSignIn } from '../../../../middlewares/auth'
+
 const router: Router = Router()
-router.route('/admin-login')
-  .post(logins, adminSignIn, userController.login)
+
+router.route('/user-login')
+  .post(adminSignInOrStaffSignIn, userController.login)
+
+router.route('/user-register')
+  .post(userController.Register)
+
+router.route('/user-getusers')
+  .get(userController.GetUsers)
+
 export default router
