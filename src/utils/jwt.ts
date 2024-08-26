@@ -7,15 +7,24 @@ export const signToken = (user: any) => {
         userId: user._id
     }, secret, { expiresIn: '30d' }) // secret key
 }
-export const signVerificationCodeToken = (EmpID: number, verifyCode: string) => {
+export const signVerificationCodeToken = (email: number, verifyCode: string) => {
     return Jwt.sign({
-        EmpID,
+        email,
         verifyCode
-    }, secret, { expiresIn: '90d' })
+    }, secret, { expiresIn: '15m' })
 }
 
 export const loginToken = (userId: String) => {
     return Jwt.sign({
         userId
     }, secret, { expiresIn: '365d' })
+}
+
+export const jwtVerify = (token: string) => {
+    try {
+        return Jwt.verify(token, secret)
+    }
+    catch (e) {
+        console.error(e)
+    }
 }

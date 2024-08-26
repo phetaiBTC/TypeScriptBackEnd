@@ -4,10 +4,14 @@ const userSchema = new Schema({
     type: String
   },
   email: {
-    type: String 
+    type: String
   },
   password: {
     type: String
+  },
+  isVerify: {
+    type: Boolean,
+    default:false
   },
   role: {
     type: String,
@@ -18,11 +22,11 @@ const userSchema = new Schema({
   },
   isDelete: {
     type: Boolean,
-    default:false
+    default: false
   },
   DeleteAt: {
     type: Date
-    
+
   }
 }, { timestamps: true })
 const Users = model('Users', userSchema, 'Users')

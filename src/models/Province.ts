@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose"
 const ProvinceSchema = new Schema({
     name: {
-        type: Boolean,
+        type: String,
         required: true
     },
     sortOder: {
